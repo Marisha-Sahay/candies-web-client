@@ -1,0 +1,20 @@
+<h1>Update Candy</h1>
+
+<%= form_tag "/candies/#{@candy['id']}", method: :patch do %>
+
+  <div>
+    <%= label_tag :name %>
+    <%= text_field_tag :name, @candy['name'] %>
+  </div>
+  <div>
+    <%= label_tag :price %>
+    <%= text_field_tag :price, @candy['price'] %>
+  </div>
+  <div>
+    <%= label_tag :expiry %>
+    <%= text_field_tag :expiry, @candy['expiry'] %>
+  </div>
+  
+  <%= submit_tag "Update" %>
+
+<% end %>

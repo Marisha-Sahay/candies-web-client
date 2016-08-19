@@ -1,0 +1,16 @@
+<table>
+<tr>
+  <th>Id</th>
+  <th>Name</th>
+  <th>Price</th>
+  <th>Expiry Date:</th>
+<% @candies.each do |candy| %>
+</tr>
+<td><%= candy["id"] %></td>
+<td><%= candy["name"] %></td>
+<td><%= candy["price"] %></td>
+<td><%= candy["expiry"] %></td>
+<tr>
+<% end %>
+
+</table>

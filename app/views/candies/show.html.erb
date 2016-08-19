@@ -1,0 +1,6 @@
+<li>Name: <%= @candy["name"] %></li>
+<li>Price: <%= @candy["price"] %></li>
+<li>Expiry: <%= @candy["expiry"]%></li>
+
+<%= link_to "Edit" , "/candies/#{@candy['id']}/edit" %>
+<%= link_to "Delete", "/candies/#{@candy['id']}", method: :delete %>
