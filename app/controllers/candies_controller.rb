@@ -1,18 +1,11 @@
 class CandiesController < ApplicationController
 
   def index
-    # i = 0
-    @candies = []
-    @candies_hash = Unirest.get("#{ENV['DOMAIN']}/candies.json").body
-    @candies_hash.each do |candy|
-      @candies << Candy.new(candy)
-      # i += 1
-    end
+    @candies = Candy.all
   end
 
   def show
-    candy_hash = Unirest.get("#{ENV['DOMAIN']}/candies/#{params[:id]}.json").body
-    @candy = Candy.new(candy_hash)
+    @candy = Candy.find(params[:id])
   end
 
   def new
@@ -33,7 +26,7 @@ class CandiesController < ApplicationController
   end
 
   def destroy
-    Unirest.delete("#{ENV['DOMAIN']}/candies/#{params[:id]}.json").body
+    Candy.destroy(params[:id])
     redirect_to "/candies"
   end
 end
