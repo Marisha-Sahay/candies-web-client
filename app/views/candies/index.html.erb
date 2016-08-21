@@ -6,10 +6,10 @@
   <th>Expiry Date:</th>
 <% @candies.each do |candy| %>
 </tr>
-<td><%= candy["id"] %></td>
-<td><%= candy["name"] %></td>
-<td><%= candy["price"] %></td>
-<td><%= candy["expiry"] %></td>
+<td><%= candy.id %></td>
+<td><%= candy.name %></td>
+<td><%= candy.price %></td>
+<td><%= candy.expiry %></td>
 <tr>
 <% end %>
 

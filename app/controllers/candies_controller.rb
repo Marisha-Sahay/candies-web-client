@@ -1,11 +1,18 @@
 class CandiesController < ApplicationController
 
   def index
-    @candies = Unirest.get("#{ENV['DOMAIN']}/candies.json").body
+    # i = 0
+    @candies = []
+    @candies_hash = Unirest.get("#{ENV['DOMAIN']}/candies.json").body
+    @candies_hash.each do |candy|
+      @candies << Candy.new(candy)
+      # i += 1
+    end
   end
 
   def show
-    @candy = Unirest.get("#{ENV['DOMAIN']}/candies/#{params[:id]}.json").body
+    candy_hash = Unirest.get("#{ENV['DOMAIN']}/candies/#{params[:id]}.json").body
+    @candy = Candy.new(candy_hash)
   end
 
   def new
