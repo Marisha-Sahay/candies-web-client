@@ -16,7 +16,7 @@ class Candy
 
   def self.all()
     candies = []
-    candies_hash = Unirest.get("#{ENV['DOMAIN']}/candies.json",headers: {Accept: "application/json","X-User-Email": "test@test.com", Authorization: "Token token=purpleHippo123"}).body
+    candies_hash = Unirest.get("#{ENV['DOMAIN']}/candies.json", headers: {Accept: "application/json","X-User-Email": "#{ENV['API_EMAIL']}", Authorization: "Token token=#{ENV['TOKEN']}"}).body
 
 
     candies_hash.each do |candy|
