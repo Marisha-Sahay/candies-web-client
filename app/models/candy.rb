@@ -10,7 +10,7 @@ class Candy
   end
 
   def self.find(id)
-    candy_hash = Unirest.get("#{ENV['DOMAIN']}/candies/#{id}.json").body
+    candy_hash = Unirest.get("#{ENV['DOMAIN']}/candies/#{id}.json", headers: {Accept: "application/json","X-User-Email": "#{ENV['API_EMAIL']}", Authorization: "Token token=#{ENV['TOKEN']}"}).body
     return Candy.new(candy_hash)
   end
 
@@ -26,11 +26,11 @@ class Candy
   end
 
   def destroy
-    Unirest.delete("#{ENV['DOMAIN']}/candies/#{id}.json").body
+    Unirest.delete("#{ENV['DOMAIN']}/candies/#{id}.json", headers: {Accept: "application/json","X-User-Email": "#{ENV['API_EMAIL']}", Authorization: "Token token=#{ENV['TOKEN']}"}).body
   end
 
   def self.create(attributes)
-    candy_hash = Unirest.post("#{ENV['DOMAIN']}/candies.json", parameters: attributes).body
+    candy_hash = Unirest.post("#{ENV['DOMAIN']}/candies.json", parameters: attributes, headers: {Accept: "application/json","X-User-Email": "#{ENV['API_EMAIL']}", Authorization: "Token token=#{ENV['TOKEN']}"}).body
     return Candy.new(candy_hash)
   end
 
