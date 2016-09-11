@@ -15,16 +15,23 @@ class Candy
   end
 
   def self.all()
-    @candies = []
-    @candies_hash = Unirest.get("#{ENV['DOMAIN']}/candies.json").body
-    @candies_hash.each do |candy|
-      @candies << Candy.new(candy)
+    candies = []
+    candies_hash = Unirest.get("#{ENV['DOMAIN']}/candies.json",headers: {Accept: "application/json","X-User-Email": "test@test.com", Authorization: "Token token=purpleHippo123"}).body
+
+
+    candies_hash.each do |candy|
+      candies << Candy.new(candy)
     end
-    return @candies
+    return candies
   end
 
-  def self.destroy(id)
+  def destroy
     Unirest.delete("#{ENV['DOMAIN']}/candies/#{id}.json").body
+  end
+
+  def self.create(attributes)
+    candy_hash = Unirest.post("#{ENV['DOMAIN']}/candies.json", parameters: attributes).body
+    return Candy.new(candy_hash)
   end
 
 end

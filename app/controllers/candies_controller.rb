@@ -12,8 +12,8 @@ class CandiesController < ApplicationController
   end
 
   def create
-    @candy = Unirest.post("#{ENV['DOMAIN']}/candies.json", parameters: {name: params[:name], price: params[:price], expiry: params[:expiry]}).body
-    redirect_to "/candies/#{@candy['id']}"
+    @candy = Candy.create(name: params[:name], price: params[:price], expiry: params[:expiry])
+    redirect_to "/candies/#{@candy.id}"
   end
 
   def edit
@@ -26,7 +26,9 @@ class CandiesController < ApplicationController
   end
 
   def destroy
-    Candy.destroy(params[:id])
+    @candy = Candy.find(params[:id])
+    @candy.destroy
     redirect_to "/candies"
   end
+
 end
